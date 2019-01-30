@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1547634542 source:g:\portablegit\timelib\main.c
+1548843652 source:g:\portablegit\timelib\main.c
 	<stdio.h>
 	<stdlib.h>
 	"timelib.h"
 
-1547634102 source:g:\portablegit\timelib\timelib.c
+1548842662 source:g:\portablegit\timelib\timelib.c
 	<stdio.h>
 	<stdlib.h>
 

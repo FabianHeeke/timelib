@@ -7,6 +7,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 const int GREGORIAN_CALENDAR_YEAR = 1582; //different calendar before this year
+const int UPPER_BOUND = 2400; // dont consider dates greater than this year
+
+/**
+ * gets a date from user input using pointers to change variables
+ * (repeats, till input is valid)
+ **/
+void input_date(int *day, int *month, int *year){
+    int date_checker = 0;
+    do{
+        //clear before getting values
+        fflush(stdin);
+        //get year
+        printf("Bitte Datum eingeben eingeben (dd.mm.yyyy - %i < Jahreszahl < %i)\n", GREGORIAN_CALENDAR_YEAR,UPPER_BOUND);
+        printf("Tag: ");
+        scanf("%i", day);
+        printf("Monat: ");
+        scanf("%i", month);
+        printf("Jahr: ");
+        scanf("%i", year);
+        //check if date is valid (inform user if not)
+        date_checker = exist_date(*day,*month,*year);
+        if (date_checker == 0){
+            printf("Datum ungueltig!\n");
+        };
+        //clear reading
+        printf("\n");
+    }while(date_checker == 0);
+}
 
 /**
  * checks if a given year is a leapyear
@@ -15,7 +43,7 @@ const int GREGORIAN_CALENDAR_YEAR = 1582; //different calendar before this year
 int is_leap_year(int year){
 
     //check if year-number is high enough
-    if (year < GREGORIAN_CALENDAR_YEAR){
+    if (year < GREGORIAN_CALENDAR_YEAR || year > UPPER_BOUND){
         return -1;
     }
     //check condition for leapyear
@@ -75,7 +103,7 @@ int get_days_for_month(int month, int year){
             }
         }
     }
-    //condition for 31-day-months (uneven months when below or equal to 7 | even months when greater than 7)
+    //condition for 31-day-months (uneven months when below or equal to 7 || even months when greater than 7)
     else if ((month <= 7 && month % 2 != 0) || (month >= 8 && month % 2 == 0) ){
         return 31;
     }

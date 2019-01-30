@@ -3,6 +3,8 @@
 #include "timelib.h"
 
 int main(){
-    printf("Tag des Jahres: %i\n", day_of_the_year(31, 12, 2000));
+    int year = 0, month = 0, day = 0;
+    input_date(&day,&month, &year);
+    printf("Tageszahl des %i.%i im Jahr %i : %i\n",day,month,year,day_of_the_year(day, month, year));
     return 0;
 }
